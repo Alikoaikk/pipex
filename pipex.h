@@ -6,7 +6,7 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:47:18 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/26 00:09:00 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/26 01:02:17 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,6 @@ char	*get_cmd_path(char *cmd, char **envp);
 void	exec_cmd(char *cmd, char **envp);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	**ft_split(char const *s, char c);
-int	ft_strncmp(const char *s1, const char *s2, unsigned int n);
+int		ft_strncmp(const char *s1, const char *s2, unsigned int n);
 
 #endif
