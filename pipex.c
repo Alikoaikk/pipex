@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pipx.c                                             :+:      :+:    :+:   */
+/*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:49:04 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/25 16:49:08 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/26 00:50:26 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ int	child2(char *cmd, int outfile, int *pipefd, char **envp)
 	return (1);
 }
 
+int	handle_main_errors(int argc, char **argv, int *infile, int *outfile)
+{
+	if (argc != 5)
+		error_exit("Usage: ./pipex infile cmd1 cmd2 outfile");
+	*infile = open(argv[1], O_RDONLY);
+	if (*infile < 0)
+		error_exit("infile");
+	*outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (*outfile < 0)
+		error_exit("outfile");
+	return (0);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	int		infile;
@@ -59,14 +72,7 @@ int	main(int argc, char **argv, char **envp)
 	pid_t	pid1;
 	pid_t	pid2;
 
-	if (argc != 5)
-		error_exit("Usage: ./pipex infile cmd1 cmd2 outfile");
-	infile = open(argv[1], O_RDONLY);
-	if (infile < 0)
-		error_exit("infile");
-	outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (outfile < 0)
-		error_exit("outfile");
+	handle_main_errors(argc, argv, &infile, &outfile);
 	if (pipe(pipefd) < 0)
 		error_exit("pipe");
 	pid1 = fork();
