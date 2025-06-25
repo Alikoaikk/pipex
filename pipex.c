@@ -22,10 +22,12 @@ void	exec_cmd(char *cmd, char **envp)
 	if (!cmd_path)
 	{
 		perror("command not found");
+		free_strs(args);
 		exit(127);
 	}
 	execve(cmd_path, args, envp);
 	perror("execve");
+	free_strs(args);
 	exit(1);
 }
 
