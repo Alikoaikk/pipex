@@ -6,7 +6,7 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:49:41 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/25 16:49:53 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/26 00:07:08 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_cmd_path(char *cmd, char **envp)
 	int		i;
 
 	i = 0;
-	while (envp[i] && strncmp(envp[i], "PATH=", 5) != 0)
+	while (envp[i] && ft_strncmp(envp[i], "PATH=", 5) != 0)
 		i++;
 	if (!envp[i])
 		return (NULL);
