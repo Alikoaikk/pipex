@@ -6,7 +6,7 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:49:41 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/26 00:07:08 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/26 01:06:03 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	error_exit(const char *msg)
 	exit(EXIT_FAILURE);
 }
 
-static void	free_strs(char **strs)
+void	free_strs(char **strs)
 {
 	int	i;
 
