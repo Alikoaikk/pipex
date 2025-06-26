@@ -6,7 +6,7 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:49:04 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/26 01:05:39 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/27 01:35:22 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,10 @@ void	exec_cmd(char *cmd, char **envp)
 
 int	child1(char *cmd, int infile, int *pipefd, char **envp)
 {
-	if (dup2(infile, STDIN_FILENO) < 0)
-		error_exit("dup2 infile");
-	if (dup2(pipefd[1], STDOUT_FILENO) < 0)
-		error_exit("dup2 pipe write");
+	if (dup2(infile, 0) < 0)
+		error_exit("dup2 infile read error");
+	if (dup2(pipefd[1], 1) < 0)
+		error_exit("dup2 pipe write error");
 	close(pipefd[0]);
 	exec_cmd(cmd, envp);
 	return (1);
@@ -56,13 +56,13 @@ int	child2(char *cmd, int outfile, int *pipefd, char **envp)
 int	handle_main_errors(int argc, char **argv, int *infile, int *outfile)
 {
 	if (argc != 5)
-		error_exit("Usage: ./pipex infile cmd1 cmd2 outfile");
+		error_exit("Use this format: ./pipex infile cmd1 cmd2 outfile");
 	*infile = open(argv[1], O_RDONLY);
 	if (*infile < 0)
-		error_exit("infile");
+		error_exit("infile not found");
 	*outfile = open(argv[4], O_CREAT | O_WRONLY | O_TRUNC, 0644);
 	if (*outfile < 0)
-		error_exit("outfile");
+		error_exit("outfile could not be created");
 	return (0);
 }
 
@@ -76,7 +76,7 @@ int	main(int argc, char **argv, char **envp)
 
 	handle_main_errors(argc, argv, &infile, &outfile);
 	if (pipe(pipefd) < 0)
-		error_exit("pipe");
+		error_exit("pipe failed");
 	pid1 = fork();
 	if (pid1 == 0)
 		child1(argv[2], infile, pipefd, envp);
