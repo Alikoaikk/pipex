@@ -6,18 +6,17 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:49:41 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/27 00:53:29 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/27 19:06:07 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-
 void	error_exit(const char *msg)
 {
-    write(2, msg, ft_strlen(msg));
-    write(2, "\n", 1);
-    exit(1);
+	write(2, msg, ft_strlen(msg));
+	write(2, "\n", 1);
+	exit(1);
 }
 
 void	free_strs(char **strs)
@@ -60,8 +59,10 @@ char	*get_cmd_path(char *cmd, char **envp)
 
 size_t	ft_strlen(const char *s)
 {
-    size_t	len = 0;
-    while (s && s[len])
-        len++;
-    return (len);
+	size_t	len;
+
+	len = 0 ;
+	while (s && s[len])
+		len++;
+	return (len);
 }
