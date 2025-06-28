@@ -6,10 +6,11 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:49:04 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/27 01:35:22 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/29 00:34:12 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <stdio.h>
 #include "pipex.h"
 
 void	exec_cmd(char *cmd, char **envp)
@@ -18,6 +19,12 @@ void	exec_cmd(char *cmd, char **envp)
 	char	*cmd_path;
 
 	args = ft_split(cmd, ' ');
+	if (!args || !args[0] || args[0][0] == '\0')
+	{
+		perror("command not found");
+		free_strs(args);
+		exit(127);
+	}
 	cmd_path = get_cmd_path(args[0], envp);
 	if (!cmd_path)
 	{
@@ -28,7 +35,7 @@ void	exec_cmd(char *cmd, char **envp)
 	execve(cmd_path, args, envp);
 	perror("execve");
 	free_strs(args);
-	exit(1);
+	exit(127);
 }
 
 int	child1(char *cmd, int infile, int *pipefd, char **envp)
@@ -44,9 +51,9 @@ int	child1(char *cmd, int infile, int *pipefd, char **envp)
 
 int	child2(char *cmd, int outfile, int *pipefd, char **envp)
 {
-	if (dup2(pipefd[0], STDIN_FILENO) < 0)
+	if (dup2(pipefd[0], 0) < 0)
 		error_exit("dup2 pipe read");
-	if (dup2(outfile, STDOUT_FILENO) < 0)
+	if (dup2(outfile, 1) < 0)
 		error_exit("dup2 outfile");
 	close(pipefd[1]);
 	exec_cmd(cmd, envp);

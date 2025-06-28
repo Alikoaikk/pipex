@@ -6,23 +6,11 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/21 12:22:22 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/26 00:10:59 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/27 19:10:43 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static int	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] != '\0')
-	{
-		i++;
-	}
-	return (i);
-}
 
 static unsigned int	totl_len(const char *s1, const char *s2)
 {

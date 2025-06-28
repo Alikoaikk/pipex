@@ -6,7 +6,7 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:47:18 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/27 00:45:11 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/06/27 19:11:13 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <sys/wait.h>
+# include <stdio.h>
 
 void	error_exit(const char *msg);
 char	*get_cmd_path(char *cmd, char **envp);
