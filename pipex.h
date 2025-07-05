@@ -6,7 +6,7 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:47:18 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/27 19:11:13 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/07/05 14:43:52 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,19 @@
 # include <fcntl.h>
 # include <sys/wait.h>
 # include <stdio.h>
+# include <errno.h>
 
-void	error_exit(const char *msg);
+typedef struct variables
+{
+	int		infile;
+	int		outfile;
+	int		pipefd[2];
+	int		pid1;
+	int		pid2;
+	int		status;
+}	t_var;
+
+void	error_exit(const char *msg, int exit_code);
 char	*get_cmd_path(char *cmd, char **envp);
 void	exec_cmd(char *cmd, char **envp);
 char	*ft_strjoin(char const *s1, char const *s2);

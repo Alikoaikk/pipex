@@ -6,17 +6,17 @@
 /*   By: akoaik <akoaik@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/25 16:49:41 by akoaik            #+#    #+#             */
-/*   Updated: 2025/06/28 12:30:35 by akoaik           ###   ########.fr       */
+/*   Updated: 2025/07/05 14:03:06 by akoaik           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	error_exit(const char *msg)
+void	error_exit(const char *msg, int exit_code)
 {
 	write(2, msg, ft_strlen(msg));
 	write(2, "\n", 1);
-	exit(1);
+	exit(exit_code);
 }
 
 void	free_strs(char **strs)
