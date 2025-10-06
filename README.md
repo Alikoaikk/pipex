@@ -250,7 +250,7 @@ pipex/
 
 ## Author
 
-**akoaik** - 42 School
+**akoaik** - 42 Beirut
 
 ---
 
