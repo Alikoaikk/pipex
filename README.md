@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="./assets/Gemini_Generated_Image_kg76iekg76iekg76.png" width="600">
+<img src="./assets/Gemini_Generated_Image_kg76iekg76iekg76.jpg" width="600">
 
 A recreation of the shell pipe mechanism using processes and file descriptors. Part of the 42 school curriculum.
 
