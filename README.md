@@ -1,5 +1,5 @@
 #
-![Pipex Banner](./assets/banner.svg)
+![Pipex Banner](./assets/Gemini_Generated_Image_kg76iekg76iekg76.png)
 
 A recreation of the shell pipe mechanism using processes and file descriptors. Part of the 42 school curriculum.
 
